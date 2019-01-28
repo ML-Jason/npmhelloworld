@@ -1,0 +1,44 @@
+{
+  "name": "ml.vartool",
+  "version": "0.0.3",
+  "description": "Variable validation and Variable generator",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "test": "mocha",
+    "coverage": "nyc mocha",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "git_lf": "git config core.autocrlf false"
+  },
+  "files": [
+    "dist/*.*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ML-Jason/ml.valuetool.git"
+  },
+  "author": "ml-jason <jason@medialand.tw>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ML-Jason/ml.valuetool/issues"
+  },
+  "homepage": "https://github.com/ML-Jason/ml.valuetool#readme",
+  "dependencies": {
+    "express-useragent": "^1.0.12",
+    "luxon": "^1.10.0",
+    "mongo-sanitize": "^1.0.1",
+    "validator": "^10.11.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "chai": "^4.2.0",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.15.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0"
+  }
+}
