@@ -47,15 +47,23 @@ vcheck.mongoID = (str) => {
 
 vcheck.url = (str) => {
   const rs = vcheck.str(str);
-  if (rs.indexOf('*') >= 0) {
-    if (rs.indexOf('*') !== rs.lastIndexOf('*')) return '';
-    if (rs.indexOf('*.') < 0) return '';
-    if (rs.indexOf('.*') >= 0) return '';
-    const tmp = rs.replace('*', 'www');
-    if (validator.isURL(tmp)) return rs;
-    return '';
+  const varray = rs.split('*');
+  if (varray.length === 2) {
+    if (varray[1].substr(0, 1) !== '.'
+      || !(varray[0] === 'http://' || varray[0] === 'https://' || varray[0] === '')) {
+      return '';
+    }
   }
-  if (validator.isURL(rs)) return rs;
+  // if (rs.indexOf('*') >= 0) {
+  //   if (rs.indexOf('*') !== rs.lastIndexOf('*')) return '';
+  //   if (rs.indexOf('*.') < 0) return '';
+  //   if (rs.indexOf('.*') >= 0) return '';
+  //   const tmp = rs.replace('*', 'www');
+  //   if (validator.isURL(tmp)) return rs;
+  //   return '';
+  // }
+  const tmp = rs.replace('*', 'www');
+  if (validator.isURL(tmp)) return rs;
   return '';
 };
 

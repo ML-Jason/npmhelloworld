@@ -75,6 +75,9 @@ describe('vcheck.url()', () => {
   it('* can be allowed', () => {
     expect(vcheck.url('http://*.123abc.com')).to.be.equal('http://*.123abc.com');
   });
+  it('* can be allowed and protocol can be ignored', () => {
+    expect(vcheck.url('*.123abc.com')).to.be.equal('*.123abc.com');
+  });
   it('* should be the sub-domain only', () => {
     expect(vcheck.url('www.123abc.*.com')).to.be.empty;
   });
