@@ -82,19 +82,25 @@ vcheck.luxon = (str, fmt) => {
 };
 
 vcheck.json = (obj) => {
-  if (typeof obj === 'string') {
-    try {
-      return JSON.parse(obj);
-    } catch (e) {
-      return null;
-    }
-  } else {
-    try {
-      return JSON.parse(JSON.stringify(obj));
-    } catch (e) {
-      return null;
-    }
+  try {
+    if (typeof obj === 'string') return JSON.parse(obj);
+    return JSON.parse(JSON.stringify(obj));
+  } catch (e) {
+    return null;
   }
+  // if (typeof obj === 'string') {
+  //   try {
+  //     return JSON.parse(obj);
+  //   } catch (e) {
+  //     return null;
+  //   }
+  // } else {
+  //   try {
+  //     return JSON.parse(JSON.stringify(obj));
+  //   } catch (e) {
+  //     return null;
+  //   }
+  // }
 };
 
 vcheck.array = (obj) => {
