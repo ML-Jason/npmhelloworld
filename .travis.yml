@@ -11,7 +11,7 @@ install:
 script:
   - npm run coverage
 after_success:
-  - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
+  - echo "${SFTP_KEY}" >> /tmp/sftp_rsa
   - curl --ftp-create-dirs
          -T README.md
          --key /tmp/sftp_rsa
