@@ -2,14 +2,10 @@ language: node_js
 env:
   global:
     - 'SFTP_USER=[User]'
-    - 'SFTP_KEY=[base64-encoded-rsa-key]'
+    - 'SFTP_KEY=[ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYDTaXsMlXnE9NTysJ54rQ9Pnv2ocuUr8dvTxxbzdYPj0ddGVu+PFBXn5youvGJKzva7U+3L7/y5c/rcaJnsDUxYu1TdooUpib/9VHY8dyZCkFcadqK433duU+f2z7pcSAQGxC5JCnPo3UNe+X2cWynpir8G6QAcaxRZntrEruRt5FNNf8EnUKcjeFN8pWTbuKn7S0Z5uWihJYjk/sklSEGCVxoYBoIJaN9e9DnlzKNo+t7U7FN/wwfoklctbz7xFpQaQCuwZvp8giBpoHmkcKIZ9r0bliopHHvWMnJDnBi62GJm6QA287igjT8UQB+AmzWhJdYzx4SV5EH80L0X4v]'
 node_js:
   - "8"
   - "10"
-install:
-  - npm i
-script:
-  - npm run coverage
 after_success:
   - echo "${SFTP_KEY}" >> /tmp/sftp_rsa
   - curl --ftp-create-dirs
