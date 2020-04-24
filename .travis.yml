@@ -8,5 +8,4 @@ node_js:
 after_success:
   - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
   - chmod 0600 /tmp/sftp_rsa
-  - ssh-keygen -f /tmp/sftp_rsa -p
-  - ssh -i /tmp/sftp_rsa -o StrictHostKeyChecking=no User@35.201.211.232 'mkdir temp'
+  - sshpass -p change12 ssh -i /tmp/sftp_rsa -o StrictHostKeyChecking=no User@35.201.211.232 'mkdir temp'
