@@ -2,12 +2,12 @@ language: node_js
 env:
   global:
     - 'SFTP_USER=[User]'
-    - 'SFTP_KEY=[ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYDTaXsMlXnE9NTysJ54rQ9Pnv2ocuUr8dvTxxbzdYPj0ddGVu+PFBXn5youvGJKzva7U+3L7/y5c/rcaJnsDUxYu1TdooUpib/9VHY8dyZCkFcadqK433duU+f2z7pcSAQGxC5JCnPo3UNe+X2cWynpir8G6QAcaxRZntrEruRt5FNNf8EnUKcjeFN8pWTbuKn7S0Z5uWihJYjk/sklSEGCVxoYBoIJaN9e9DnlzKNo+t7U7FN/wwfoklctbz7xFpQaQCuwZvp8giBpoHmkcKIZ9r0bliopHHvWMnJDnBi62GJm6QA287igjT8UQB+AmzWhJdYzx4SV5EH80L0X4v]'
+    - 'SFTP_KEY=[c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFEWURUYVhzTWxYbkU5TlR5c0o1NHJROVBudjJvY3VVcjhkdlR4eGJ6ZFlQajBkZEdWdStQRkJYbjV5b3V2R0pLenZhN1UrM0w3L3k1Yy9yY2FKbnNEVXhZdTFUZG9vVXBpYi85VkhZOGR5WkNrRmNhZHFLNDMzZHVVK2YyejdwY1NBUUd4QzVKQ25QbzNVTmUrWDJjV3lucGlyOEc2UUFjYXhSWm50ckVydVJ0NUZOTmY4RW5VS2NqZUZOOHBXVGJ1S243UzBaNXVXaWhKWWprL3NrbFNFR0NWeG9ZQm9JSmFOOWU5RG5sektObyt0N1U3Rk4vd3dmb2tsY3Riejd4RnBRYVFDdXdadnA4Z2lCcG9IbWtjS0laOXIwYmxpb3BISHZXTW5KRG5CaTYyR0ptNlFBMjg3aWdqVDhVUUIrQW16V2hKZFl6eDRTVjVFSDgwTDBYNHYgTUwtSkFTT05cVXNlckBNTC1KYXNvbg==]'
 node_js:
   - "8"
   - "10"
 after_success:
-  - echo "${SFTP_KEY}" >> /tmp/sftp_rsa
+  - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
   - curl --ftp-create-dirs
          -T ./README.md
          --key /tmp/sftp_rsa
