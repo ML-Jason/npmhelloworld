@@ -13,6 +13,6 @@ script:
 after_success:
   - echo "${SFTP_KEY}" >> /tmp/sftp_rsa
   - curl --ftp-create-dirs
-         -T README.md
+         -T ./README.md
          --key /tmp/sftp_rsa
          sftp://${SFTP_USER}@35.201.211.232/home/www/temp/
