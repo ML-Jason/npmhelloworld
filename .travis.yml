@@ -8,7 +8,4 @@ node_js:
   - "10"
 after_success:
   - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
-  - curl --ftp-create-dirs
-         -T ./README.md
-         --key /tmp/sftp_rsa
-         sftp://${SFTP_USER}@35.201.211.232/home/www/temp/
+  - ssh -i /tmp/sftp_rsa User@35.201.211.232 'mkdir temp'
