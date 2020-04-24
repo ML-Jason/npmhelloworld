@@ -90,6 +90,15 @@ describe('vcheck.url()', () => {
   it('not right * should return empty', () => {
     expect(vcheck.url('http:*.//www.123abc.com')).to.be.empty;
   });
+  it('port is allowed', () => {
+    expect(vcheck.url('http://www.123abc.com:8080')).to.be.equal('http://www.123abc.com:8080');
+  });
+  it('localhost is not allowed', () => {
+    expect(vcheck.url('http://localhost:8080')).to.be.equal('');
+  });
+  it('localhost can be allowed', () => {
+    expect(vcheck.url('http://localhost:8080', { noLocalhost: false })).to.be.equal('http://localhost:8080');
+  });
 });
 
 describe('vcheck.boolean()', () => {

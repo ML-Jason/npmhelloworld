@@ -1,16 +1,18 @@
 language: node_js
+env:
+  global:
+    - 'SFTP_USER=[User]'
+    - 'SFTP_KEY=[base64-encoded-rsa-key]'
 node_js:
   - "8"
   - "10"
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
 install:
   - npm i
-  - npm i coveralls
 script:
   - npm run coverage
 after_success:
-  - npm run coverage_report
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
+  - curl --ftp-create-dirs
+         -T README.md
+         --key /tmp/sftp_rsa
+         sftp://${SFTP_USER}@35.201.211.232/home/www/temp/

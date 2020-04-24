@@ -45,7 +45,7 @@ vcheck.mongoID = (str) => {
   return '';
 };
 
-vcheck.url = (str) => {
+vcheck.url = (str, { noLocalhost } = { noLocalhost: true }) => {
   const rs = vcheck.str(str);
   const varray = rs.split('*');
   if (varray.length === 2) {
@@ -62,7 +62,12 @@ vcheck.url = (str) => {
   //   if (validator.isURL(tmp)) return rs;
   //   return '';
   // }
-  const tmp = rs.replace('*', 'www');
+  let tmp = rs.replace('*', 'www');
+  if (!noLocalhost) {
+    if (tmp.indexOf('localhost') === 0 || tmp.indexOf('http://localhost') === 0 || tmp.indexOf('https://localhost') === 0) {
+      tmp = tmp.replace('localhost', 'www.test.com');
+    }
+  }
   if (validator.isURL(tmp)) return rs;
   return '';
 };
